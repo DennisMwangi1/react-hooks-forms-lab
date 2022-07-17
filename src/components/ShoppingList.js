@@ -9,11 +9,9 @@ function ShoppingList({ items,handleAddItem }) {
   const [searchedItem,setSearchedItem] = useState('')
   
 
-  function handleAddItem(newItem){
-    console.log(newItem)
-   return <Item key={newItem.id} name={newItem.item} category={newItem.category} />
+  function handleCategoryChange(event) {
+    setSelectedCategory(event.target.value);
   }
-
 
   function handleSearchedItem(event){
     setSearchedItem(event.target.value)
@@ -21,39 +19,33 @@ function ShoppingList({ items,handleAddItem }) {
 
   const itemsSearched = items.filter((item)=>{
     
-    return item.name.match(searchedItem)
+    return item.name.toLowerCase().includes(searchedItem.toLowerCase())
   })
 
-  function handleCategoryChange(event) {
-    setSelectedCategory(event.target.value);
-  }
 
-  const itemsToDisplay = items
-  .filter((item) => {
+
+  const itemsToDisplay = itemsSearched.filter((item) => {
     if (selectedCategory === "All") return true;
 
     return item.category === selectedCategory;
   })
  
-  const display = itemsToDisplay.map((item) => (
-    <Item key={item.id} name={item.name} category={item.category} />
-    
-  ))
-  const searched = itemsSearched.map((item)=>(
-    <Item key={item.id} name={item.name} category={item.category} />
-  ))
+
+ 
  
 
 
   return (
     <div className="ShoppingList">
       <ItemForm onItemFormSubmit={handleAddItem}/>
-      <Filter search={searchedItem} onCategoryChange={handleCategoryChange} onSearchChange={handleSearchedItem}  />
+      <Filter 
+ onCategoryChange={handleCategoryChange} 
+onSearchChange={handleSearchedItem}  />
       <ul className="Items">
-        {/* {display} */}
-        {searched}
-        
-        
+       { itemsToDisplay.map((item) => (
+    <Item key={item.id} name={item.name} category={item.category} />
+    
+  ))}
         
       </ul>
     </div>
@@ -61,3 +53,5 @@ function ShoppingList({ items,handleAddItem }) {
 }
 
 export default ShoppingList;
+
+

@@ -13,7 +13,7 @@ function App() {
 
   function handleAddItem(item){
     
-    setItems(...items,item)
+    setItems([...items,item])
     
   }
 
