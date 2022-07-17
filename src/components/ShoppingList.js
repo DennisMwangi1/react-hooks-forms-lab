@@ -9,7 +9,11 @@ function ShoppingList({ items,handleAddItem }) {
   const [searchedItem,setSearchedItem] = useState('')
   
 
- 
+  function handleAddItem(newItem){
+    console.log(newItem)
+   return <Item key={newItem.id} name={newItem.item} category={newItem.category} />
+  }
+
 
   function handleSearchedItem(event){
     setSearchedItem(event.target.value)
@@ -33,6 +37,7 @@ function ShoppingList({ items,handleAddItem }) {
  
   const display = itemsToDisplay.map((item) => (
     <Item key={item.id} name={item.name} category={item.category} />
+    
   ))
   const searched = itemsSearched.map((item)=>(
     <Item key={item.id} name={item.name} category={item.category} />
@@ -47,6 +52,7 @@ function ShoppingList({ items,handleAddItem }) {
       <ul className="Items">
         {/* {display} */}
         {searched}
+        
         
         
       </ul>

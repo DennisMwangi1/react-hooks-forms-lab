@@ -7,8 +7,8 @@ const[category,setCategory] = useState('produce')
 
 const newItem = {
   id: uuid(),
-  item,
-  category,
+  name:item,
+  category:category,
 };
 
 
@@ -29,12 +29,12 @@ function handleSubmit(event){
     <form className="NewItem" onSubmit={handleSubmit}>
       <label>
         Name:
-        <input type="text" name="name" value={item} onChange={handleSetItem}  />
+        <input type="text" name="name" value={newItem.name} onChange={handleSetItem}  />
       </label>
 
       <label>
         Category:
-        <select name="category" value={category} onChange={handleSetCategory}>
+        <select name="category" value={newItem.category} onChange={handleSetCategory}>
           <option value="Produce">Produce</option>
           <option value="Dairy">Dairy</option>
           <option value="Dessert">Dessert</option>

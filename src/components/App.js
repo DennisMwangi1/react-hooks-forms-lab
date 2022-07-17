@@ -12,7 +12,9 @@ function App() {
   }
 
   function handleAddItem(item){
+    
     setItems(...items,item)
+    
   }
 
   return (
